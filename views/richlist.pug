@@ -35,7 +35,7 @@ block content
         }
 
         new Chart("pieChart", {
-          type: "pie",
+          type: "doughnut",
           data: {
             labels: xValues,
             datasets: [{
@@ -44,6 +44,8 @@ block content
             }]
           },
           options: {
+            borderWidth: 0,
+            cutout: 60,
             responsive: true,
             plugins: {
               legend: {

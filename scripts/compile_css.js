@@ -17,8 +17,15 @@ fs.writeFile('./public/css/_theme-selector.scss', `$theme-name: "${settings.shar
 
     // save the minified css to file
     fs.writeFile('./public/css/custom.min.css', custom_minified.css, function (err) {
-      // finished compiling css
-      process.exit(0);
+
+      // generate minified theme css from bootstrap.css
+      const bootstrap_minified = sass.compile('./public/css/themes/osmium/bootstrap.css', {style: 'compressed'});
+
+      fs.writeFile('./public/css/themes/osmium/bootstrap.min.css', bootstrap_minified.css, function (err) {
+        // finished compiling css
+        process.exit(0);
+
+      });
     });
   });
 });

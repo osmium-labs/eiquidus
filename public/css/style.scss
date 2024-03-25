@@ -12,6 +12,7 @@
 @use './themes/materia/variables' as materia;
 @use './themes/minty/variables' as minty;
 @use './themes/morph/variables' as morph;
+@use './themes/osmium/variables' as osmium;
 @use './themes/pulse/variables' as pulse;
 @use './themes/quartz/variables' as quartz;
 @use './themes/sandstone/variables' as sandstone;
@@ -55,6 +56,8 @@ $theme-name: to-lower-case(theme-selector.$theme-name);
     border-color: minty.$gray-300 if($important == 0, null, !important);
   } @else if $theme-name == "morph" {
     border-color: morph.$gray-300 if($important == 0, null, !important);
+  } @else if $theme-name == "osmium" {
+    border-color: osmium.$primary if($important == 0, null, !important);
   } @else if $theme-name == "pulse" {
     border-color: pulse.$gray-300 if($important == 0, null, !important);
   } @else if $theme-name == "quartz" {
@@ -113,6 +116,8 @@ $theme-name: to-lower-case(theme-selector.$theme-name);
     border-color: #484e53;  /* Hardcoded value not present in _variables.scss */
   } @else if $theme-name == "morph" {
     border-color: #373b3e;  /* Hardcoded value not present in _variables.scss */
+  } @else if $theme-name == "osmium" {
+    border-color: osmium.$primary;
   } @else if $theme-name == "pulse" {
     border-color: #2e2c35;  /* Hardcoded value not present in _variables.scss */
   } @else if $theme-name == "quartz" {
@@ -242,6 +247,9 @@ $theme-name: to-lower-case(theme-selector.$theme-name);
   } @else if $theme-name == "morph" {
     color: morph.$white;
     background-color: morph.$gray-900;
+  } @else if $theme-name == "osmium" {
+    color: osmium.$white;
+    background-color: osmium.$gray-900;
   } @else if $theme-name == "pulse" {
     color: pulse.$white;
     background-color: pulse.$gray-900;
@@ -403,6 +411,8 @@ $theme-name: to-lower-case(theme-selector.$theme-name);
     color: rgba(255, 255, 255, 0.6);  /* Hardcoded value not present in _variables.scss */
   } @else if $theme-name == "morph" {
     color: rgba(255, 255, 255, 0.75);  /* Hardcoded value not present in _variables.scss */
+  } @else if $theme-name == "osmium" {
+    color: rgba(181, 186, 189, 1);  /* Hardcoded value not present in _variables.scss */
   } @else if $theme-name == "pulse" {
     color: rgba(255, 255, 255, 0.55);  /* Hardcoded value not present in _variables.scss */
   } @else if $theme-name == "quartz" {
@@ -836,9 +846,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .nav-tabs {
-  border-width: 1px;
+  // border-width: 1px;
   > .nav-item > .nav-link {
-    border-width: 1px;
+    // border-width: 1px;
   }
 }
 
@@ -879,12 +889,13 @@ table.table {
 }
 
 table {
+  font-size: 16px;
   width: 100% !important;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  @include table-border-color;
+  // border-top-width: 1px;
+  // border-top-style: solid;
+  // border-bottom-width: 1px;
+  // border-bottom-style: solid;
+  // @include table-border-color;
   a:not(.btn), &.table a:not(.btn) {
     text-decoration: none;
   }
@@ -896,29 +907,48 @@ table {
     margin-top: 0 !important;
     border-top: 0;
     border-right: 0;
-    > thead > tr {
-      > th {
-        border-bottom-width: 0 !important;
-      }
-      > th:last-child {
-        border-right: 0;
-        border-left-width: 1px;
-        border-left-style: solid;
-        @include table-border-color;
-      }
-      > th:nth-child(2) {
-        border-right: 0;
+    > thead {
+      // border-top-left-radius: 5px;
+      
+      > tr {
+        // border-top-left-radius: 5px;
+        // border-top-right-radius: 5px;
+        // border-style: solid;
+        // border-width: 1px;
+        // @include table-border-color;
+
+        > th {
+          border-bottom-width: 0 !important;
+        }
+        > th:last-child {
+          // border-top-right-radius: 5px;
+          border-right: 0;
+          // border-left-width: 1px;
+          // border-left-style: solid;
+          // @include table-border-color;
+        }
+        > th:nth-child(2) {
+          border-right: 0;
+        }
       }
     }
-    > tbody > tr {
-      > td:last-child {
-        border-right: 0;
-        border-left-width: 1px;
-        border-left-style: solid;
-        @include table-border-color;
-      }
-      > td:nth-child(2) {
-        border-right: 0;
+    > tbody {
+      > tr {
+        // @include table-border-color;
+        &:last-child {
+          // border-bottom-left-radius: 5px;
+          // border-bottom-right-radius: 5px;
+        }
+
+        > td:last-child {
+          border-right: 0;
+          // border-left-width: 1px;
+          // border-left-style: solid;
+          // @include table-border-color;
+        }
+        > td:nth-child(2) {
+          border-right: 0;
+        }
       }
     }
   }
@@ -938,7 +968,7 @@ table {
 }
 
 .dataTables_info, .dataTables_length {
-  padding-left: 10px;
+  font-size: 16px;
 }
 
 .dataTables_info {
@@ -951,25 +981,57 @@ table {
 }
 
 .dataTables_paginate {
-  padding-right: 5px;
+  padding-top: 5px;
+}
+
+.dataTables_scrollHead {
+  .table-bordered {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  // border-right-width: 1px;
+  // border-right-style: solid;
+  // @include table-border-color;
 }
 
 .dataTables_scrollHeadInner {
   padding-right: 16px !important;
-  border-right-width: 1px;
-  border-right-style: solid;
-  @include table-border-color;
+
+  table > thead > tr > th:last-child {
+    border-top-right-radius: 5px;
+  }
+  // border-right-width: 1px;
+  // border-right-style: solid;
+  // @include table-border-color;
 }
 
-div.dataTables_scrollBody > table {
-  > thead > tr {
-    height: 0 !important;
+div.dataTables_scrollBody {
+  .table-bordered {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
+  
+  > table {
+  
+    > thead > tr {
+      height: 0 !important;
+    }
+    
+    > tbody tr:first-child td {
+      // border-top-width: 1px;
+      // border-top-style: solid;
+      // @include table-border-color;
+    }
 
-  > tbody tr:first-child td {
-    border-top-width: 1px;
-    border-top-style: solid;
-    @include table-border-color;
+    > tbody tr:last-child td:last-child {
+      border-bottom-right-radius: 5px;
+      // border-top-width: 1px;
+      // border-top-style: solid;
+      // @include table-border-color;
+    }
   }
 }
 
@@ -998,7 +1060,7 @@ div.dataTables_processing > div:last-child > div {
   justify-content: flex-start;
   display: inline-block;
   > .paginate_button > a, > .paginate_button.disabled > a {
-    border: 1px solid black;
+    border: 1px solid AB84BB;
   }
   > li {
     display: inline;
@@ -1020,7 +1082,7 @@ div.dataTables_processing > div:last-child > div {
     &.addr-summary {
       line-height: 7.7;
       font-size: 1.3em;
-      font-weight: 800;
+      font-weight: 700;
       text-align: center;
     }
 
@@ -1035,29 +1097,36 @@ div.dataTables_processing > div:last-child > div {
 }
 
 .dataTables_wrapper {
-  border-top-width: 1px;
-  border-top-style: solid;
-  @include table-border-color;
+  border: none;
+  // border-top-left-radius: 5px;
+  // border-top-right-radius: 5px;
+  // border-top-width: 1px;
+  // border-top-style: dashed;
+  // @include table-border-color;
   > .row:first-child {
     margin-right: 0;
     > div:first-child > .dataTables_length {
-      border-left-width: 1px;
-      border-left-style: solid;
-      @include table-border-color;
+      border: none;
+      // border-top-left-radius: 5px;
+      // border-left-width: 1px;
+      // border-left-style: solid;
+      // @include table-border-color;
     }
     > div:last-child {
-      border-right-width: 1px;
-      border-right-style: solid;
-      @include table-border-color;
+      border: none;
+      // border-top-right-radius: 5px;
+      // border-right-width: 1px;
+      // border-right-style: solid;
+      // @include table-border-color;
     }
   }
   > .row:last-child {
     margin-left: 0;
     margin-right: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-top: 0;
-    @include table-border-color;
+    // border-width: 1px;
+    // border-style: solid;
+    // border-top: 0;
+    // @include table-border-color;
     > div:first-child {
       padding-left: 0;
     }
@@ -1106,7 +1175,11 @@ tr {
 }
 
 .tab-pane .dataTables_wrapper, .tab-pane > .card-default > table, .wrapper-border-0 .dataTables_wrapper {
-  border-top: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  // border-top: 0;
 }
 
 .tab-pane {
@@ -1129,7 +1202,6 @@ tr {
   @include table-border-color;
   > thead > tr > th, > tbody > tr > td {
     border-width: 1px;
-    border-bottom-width: 0;
   }
   
   /* Fix for sketchy v5.13 theme turning all table data black */
@@ -1182,15 +1254,15 @@ tr {
   .dataTables_wrapper {
     > .row:first-child {
       > div:first-child {
-        border-right-width: 1px;
-        border-right-style: solid;
-        @include table-border-color;
+        // border-right-width: 1px;
+        // border-right-style: solid;
+        // @include table-border-color;
       }
 
       > div:nth-child(2) > .dataTables_filter {
-        border-left-width: 1px;
-        border-left-style: solid;
-        @include table-border-color;
+        // border-left-width: 1px;
+        // border-left-style: solid;
+        // @include table-border-color;
       }
     }
   }
@@ -1225,22 +1297,23 @@ tr {
 }
 
 .card-body, .card-default.border-0 > .card-header {
-  border-width: 1px;
-  border-style: solid;
-  @include table-border-color;
+  // border-width: 1px;
+  // border-style: solid;
+  // @include table-border-color;
 }
 
 .card-body {
-  border-width: 1px;
-  border-style: solid;
-  @include table-border-color;
+  background-color: rgb(30, 30, 30);
+  // border-width: 1px;
+  // border-style: solid;
+  // @include table-border-color;
 }
 
 .card-default.border-0 > .card-header {
-  border-width: 1px;
-  border-style: solid;
-  border-bottom-width: 0;
-  @include table-border-color;
+  // border-width: 1px;
+  // border-style: solid;
+  // border-bottom-width: 0;
+  // @include table-border-color;
 }
 
 .right-border-0 {
@@ -1669,7 +1742,7 @@ div[data-overlayscrollbars-viewport="scrollbarHidden"] > .navbar-nav > li#market
 }
 
 #showClaimInstructions:hover {
-  color: #efefef;
+  color: #AB84BB;
 }
 
 .btn-copy {

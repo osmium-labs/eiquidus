@@ -4,7 +4,7 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     meta(http-equiv='Content-Language', content='en')
-    title=(page_title_prefix == null || page_title_prefix == '' ? settings.locale.error_title.replace('{1}', settings.coin.name) : page_title_prefix) + ' - ' + settings.shared_pages.page_title
+    title=(page_title_prefix == null || page_title_prefix == '' ? settings.locale.error_title.replace('{1}', settings.coin.name) : page_title_prefix)
     if settings.shared_pages.favicons.favicon32 != ''
       link(rel='icon', href='/' + settings.shared_pages.favicons.favicon32, sizes='32x32')
     if settings.shared_pages.favicons.favicon128 != ''
@@ -1244,6 +1244,7 @@ html(lang='en')
               a(href='/', alt=settings.coin.name + ' Home', title=settings.coin.name + ' Home', style='order:-1;', data-bs-toggle='tooltip', data-bs-placement='bottom')
                 img.logo-main(src=(settings.shared_pages.page_header.home_link_logo == null || settings.shared_pages.page_header.home_link_logo == '' ? settings.shared_pages.logo : settings.shared_pages.page_header.home_link_logo), style='margin:0;max-height:' + settings.shared_pages.page_header.home_link_logo_height + 'px;')
             a#side-header-toggle.side-header-toggle(href='#')
+              //- img(class="nav-icon", width="27", height="28", alt='Expand Menu', title='Expand Menu', src='/img/hamburger.svg', data-bs-toggle='tooltip', data-bs-placement='right')
               span.fa-solid.fa-bars(alt='Expand Menu', title='Expand Menu', data-bs-toggle='tooltip', data-bs-placement='right', style='width: 24px;')
             if settings.shared_pages.page_header.search.enabled == true && settings.shared_pages.page_header.search.position.toString().toLowerCase() == 'inside-header'
               span#search-header-span(alt='Search', title='Search', data-bs-toggle='tooltip', data-bs-placement='left')
@@ -1266,7 +1267,7 @@ html(lang='en')
                   span.fa-2xl.fa-regular.fa-rectangle-xmark(type='button', data-bs-dismiss='offcanvas' aria-label='Close')
               li#home.nav-item(alt=settings.locale.menu_explorer, title=settings.locale.menu_explorer, data-bs-toggle='tooltip', data-bs-placement='right')
                 a.nav-link(href='/')
-                  span.nav-icon.fa-solid.fa-cubes
+                  img(class="nav-icon" width="27" height="28" src='/img/explorer.svg')
                   span.margin-left-5 #{settings.locale.menu_explorer}
               if settings.blockchain_specific.heavycoin.enabled == true && settings.blockchain_specific.heavycoin.reward_page.enabled == true
                 li#reward.nav-item(alt=settings.locale.menu_reward, title=settings.locale.menu_reward, data-bs-toggle='tooltip', data-bs-placement='right')
@@ -1276,28 +1277,28 @@ html(lang='en')
               if settings.masternodes_page.enabled == true
                 li#masternodes.nav-item(alt="Masternodes", title="Masternodes", data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/masternodes')
-                    span.nav-icon.fa-solid.fa-share-nodes
+                    img(class="nav-icon" width="27" height="28" src='/img/masternodes.svg')
                     span.margin-left-5 Masternodes
               if settings.movement_page.enabled == true
                 li#movement.nav-item(alt=settings.locale.menu_movement, title=settings.locale.menu_movement, data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/movement')
-                    span.nav-icon.fa-regular.fa-money-bill-1
+                    img(class="nav-icon" width="27" height="28" src='/img/movement.svg')
                     span.margin-left-5 #{settings.locale.menu_movement}
               if settings.network_page.enabled == true
                 li#network.nav-item(alt=settings.locale.menu_network, title=settings.locale.menu_network, data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/network')
-                    span.nav-icon.fa-solid.fa-network-wired
+                    img(class="nav-icon" width="27" height="28" src='/img/network-info.svg')
                     span.margin-left-5 #{settings.locale.menu_network}
               if settings.richlist_page.enabled == true
                 li#richlist.nav-item(alt=settings.locale.menu_richlist, title=settings.locale.menu_richlist, data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/richlist')
-                    span.nav-icon.fa-brands.fa-btc
+                    img(class="nav-icon" width="27" height="28" src='/img/rich-list.svg')
                     span.margin-left-5 #{settings.locale.menu_richlist}
               if settings.markets_page.enabled == true
                 if settings.markets_page.show_market_dropdown_menu == true && settings.market_count > 1
                   li#markets.dropend.nav-item.side-market-menu(alt=settings.locale.menu_markets, title=settings.locale.menu_markets, data-bs-toggle='tooltip', data-bs-placement='right')
                     a.nav-link.dropdown-toggle(href='#')
-                      span.nav-icon.fa-solid.fa-chart-line
+                      img(class="nav-icon" width="27" height="28" src='/img/markets.svg')
                       span.margin-left-5 #{settings.locale.menu_markets}
                     div#side-market-menu.navbar(class=dropdownClasses)
                       each mkt in settings.market_data
@@ -1326,17 +1327,17 @@ html(lang='en')
               if settings.api_page.enabled == true
                 li#info.nav-item(alt=settings.locale.menu_api, title=settings.locale.menu_api, data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/info')
-                    span.nav-icon.fa-solid.fa-circle-info
+                    img(class="nav-icon" width="27" height="28" src='/img/api.svg')
                     span.margin-left-5 #{settings.locale.menu_api}
               if settings.claim_address_page.show_header_menu == true && settings.claim_address_page.enabled == true
                 li#claim-address.nav-item(alt=settings.locale.menu_claim_address, title=settings.locale.menu_claim_address, data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/claim')
-                    span.nav-icon.fa-regular.fa-address-card
+                    img(class="nav-icon" width="27" height="28" src='/img/claimaddress.svg')
                     span.margin-left-5 #{settings.locale.menu_claim_address}
               if settings.orphans_page.enabled == true
                 li#orphans.nav-item(alt=settings.locale.menu_orphans, title=settings.locale.menu_orphans, data-bs-toggle='tooltip', data-bs-placement='right')
                   a.nav-link(href='/orphans')
-                    span.nav-icon.fa-regular.fa-rectangle-xmark
+                    img(class="nav-icon" width="27" height="28" src='/img/orphan-blocks.svg#img')
                     span.margin-left-5 #{settings.locale.menu_orphans}
         div#side-offcanvas.offcanvas.offcanvas-start(tabindex='-1')
           div.offcanvas-body.navbar(class=sideBarClasses)
@@ -1417,6 +1418,6 @@ html(lang='en')
             p
               | !{settings.shared_pages.page_footer.powered_by_text.replace('{explorer_version}', settings.explorer_version + (settings.revision == null || settings.revision == '' ? '' : `-${settings.revision}`))}
       .col-4.navbar-nav
-        ui.nav.justify-content-end
-          label#lblBlockcount.badge.nav-link.border-0.float-end
-          label#lblConnections.badge.nav-link.border-0.float-end
+        //- ui.nav.justify-content-end
+        //-   label#lblBlockcount.badge.nav-link.border-0.float-end
+        //-   label#lblConnections.badge.nav-link.border-0.float-end
